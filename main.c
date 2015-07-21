@@ -5,6 +5,7 @@ int 				main(int argc, char const *argv[])
 {
 //	unsigned char 	test;
 	maze_t			*maze;
+	char 			*cell;
 
 	srand(time(NULL));
 //	test = 0;
@@ -18,6 +19,8 @@ int 				main(int argc, char const *argv[])
 		printf("The cell exists !\n");
 	else
 		printf("The cell doesn't exist !\n");
+	cell = rand_border_cell(maze);
+	printf("Random border cell: x = %d y = %d\n", cell_x(cell, maze), cell_y(cell, maze));
 	printCharArrayMaze(maze->array, maze->m, maze->n);
 	destroyMaze(maze);
 

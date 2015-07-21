@@ -13,7 +13,7 @@ void				my_putchar(char c)
 /*
  * Get a random int between 0 and n - 1
  * param: borne sup
- * Return: 
+ * Return: random int [0:n[
 */
 int					get_nbrand(int n)
 {

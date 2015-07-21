@@ -98,3 +98,37 @@ char		*get_cellxy(int x, int y, maze_t *maze)
   	}
   	return (get_cellxy(x, y, maze));
   }
+
+/*
+ * Get a random border cell from the maze
+ * Param: the maze
+ * Return: a pointer on a random border cell
+*/
+char        *rand_border_cell(maze_t *maze)
+{
+  char      **border_maze;
+  int       perimeter;
+  int       i, j;
+  char      *res;
+
+  perimeter = 2 * maze->m + 2 * (maze->n - 2);
+  border_maze = malloc(sizeof(char*) * perimeter);
+  i = 0;
+  j = 0;
+  while (i < maze->m) {
+    border_maze[j] = get_cellxy(i, 0, maze);
+    border_maze[j + 1] = get_cellxy(i, maze->n - 1, maze);
+    j += 2;
+    i++;
+  }
+  i = 1;
+  while (i < (maze->n - 1)) {
+    border_maze[j] = get_cellxy(0, i, maze);
+    border_maze[j + 1] = get_cellxy(maze->m - 1, i, maze);
+    j += 2;
+    i++;
+  }
+  res = border_maze[get_nbrand(perimeter)];
+  free(border_maze);
+  return (res);
+}

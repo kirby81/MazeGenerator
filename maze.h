@@ -50,5 +50,7 @@ int			cell_x(char *cell, maze_t *maze);
 int			cell_y(char *cell, maze_t *maze);
 // Check if a cell exist
 char		*cell_at_dir(int dir, char *cell, maze_t *maze);
+// Get a random border cell from the maze
+char        *rand_border_cell(maze_t *maze);
 
 #endif

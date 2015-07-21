@@ -13,5 +13,7 @@ void				printBit(unsigned char var);
 void				printCharArray2D(char *array, int m, int n);
 //Print an array of char like a maze
 void				printCharArrayMaze(char *array, int m, int n);
+// Get a random int between 0 and n - 1
+int					get_nbrand(int n);
 
 #endif
