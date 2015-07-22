@@ -132,3 +132,28 @@ char        *rand_border_cell(maze_t *maze)
   free(border_maze);
   return (res);
 }
+
+/*
+ * Get a random cell next to the current one
+ * Param: the current cell and the maze
+ * Return: the random cell
+*/
+char        *rand_next_cell(char *cell, maze_t *maze)
+{
+  char      *cellArray[4];
+  const int dir[4] = {N, W, S, E};
+  int       size;
+  int       i;
+
+  size = 0;
+  i = 0;
+  while (i < 4) {
+    if (cellArray[size] = cell_at_dir(i, cell, maze)) {
+      if ((*cellArray[size] & CSTATE) == 0)
+        size++;
+    }
+    i++;
+  }
+  return (cellArray[get_nbrand(size + 1)]);
+}
+

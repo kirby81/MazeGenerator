@@ -52,5 +52,7 @@ int			cell_y(char *cell, maze_t *maze);
 char		*cell_at_dir(int dir, char *cell, maze_t *maze);
 // Get a random border cell from the maze
 char        *rand_border_cell(maze_t *maze);
+// Get a random cell next to the current one
+char        *rand_next_cell(char *cell, maze_t *maze);
 
 #endif
