@@ -134,6 +134,19 @@ char        *rand_border_cell(maze_t *maze)
 }
 
 /*
+ * Get a random cell from the maze
+ * Param: the maze
+ * Return: the random cell
+*/
+char        *rand_cell(maze_t *maze)
+{
+  int       size;
+
+  size = maze->m * maze->n;
+  return (maze->array[get_nbrand(size)]);
+}
+
+/*
  * Get a random cell next to the current one
  * Param: the current cell and the maze
  * Return: the random cell
@@ -154,6 +167,30 @@ char        *rand_next_cell(char *cell, maze_t *maze)
     }
     i++;
   }
-  return (cellArray[get_nbrand(size + 1)]);
+  if (size)
+    return (cellArray[get_nbrand(size + 1)]);
+  else
+    return (NULL);
 }
 
+void        generate_maze(maze_t *maze)
+{
+  list_t    *histo;
+  node_t    *cur_cell, *next_cell;
+
+  histo = new_list(rand_cell(maze));
+  cur_cell = histo->root;
+  while (cur_cell != histo->root && rand_next_cell(histo->root->cell, maze)) {
+
+    if (!(next_cell = rand_next_cell(cur_cell->cell, maze))) {
+      if (cur_cell != histo->root)
+        cur_cell = cur_cell->prev;
+    }
+
+    while (next_cell) {
+      cur_cell->cell |= 1 << STATE;
+    }
+
+  }
+
+}

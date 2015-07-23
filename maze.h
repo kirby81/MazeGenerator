@@ -23,21 +23,41 @@ enum {N, W, S, E};
 #define CELL_W  2
 #define CELL_S  4
 #define CELL_E  8
-#define CSTATE 16
+#define CSTATE 	16
+
+#define STATE 	4
 
 /* Define maze structure */
 typedef struct {
 	/* Maze size = m lines * n columns */
-	int m, n;
+	int 	m, n;
 
 	/* Entrence and exit cells */
-	char *in, *out;
+	char 	*in, *out;
 
 	/* Array of cells ==> the maze */
-	char *array;
+	char 	*array;
 } maze_t;
 
-/* Prototypes */
+/* Define node structure */
+typedef struct node_t{
+	/* A maze cell */
+	char 		*cell;
+
+	node_t		*next;
+	node_t		*prev;
+	
+} node_t;
+
+/* Define tree structure */
+typedef struct 	list_t
+{
+	node_t 		*root;
+
+	int			size;
+} list_t;
+
+/* Prototypes maze.c*/
 // Create a new maze with m lines ans n columns
 maze_t		*newMaze(int m, int n);
 // Destroy a maze
@@ -54,5 +74,10 @@ char		*cell_at_dir(int dir, char *cell, maze_t *maze);
 char        *rand_border_cell(maze_t *maze);
 // Get a random cell next to the current one
 char        *rand_next_cell(char *cell, maze_t *maze);
+
+/* Prototypes tree.c*/
+node_t		*add_child(node_t *node, char *cell);
+list_t		*new_list(char *cell);
+void		destroy_list(list_t *list);
 
 #endif
