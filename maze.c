@@ -173,6 +173,62 @@ char        *rand_next_cell(char *cell, maze_t *maze)
     return (NULL);
 }
 
+/*
+ * Open door between two cell
+ * Param: two cells next to each otther
+ * Return: 0 => ok | -1 => NOK
+*/
+int         open_door(char *cell1, char *cell2, maze_t *maze)
+{
+  int       x1, y1;
+  int       x2, y2;
+  int       door1, door2;
+
+  x1 = cell_x(cell1, maze);
+  y1 = cell_y(cell1, maze);
+
+  x2 = cell_x(cell2, maze);
+  y2 = cell_y(cell2, maze);
+
+  if (y2 == y1) {
+
+    if (x2 == x1 + 1) {
+      door1 = E;
+      door2 = W;
+    } else if (x2 == x1 - 1) {
+      door1 = W;
+      door2 = E;
+    } else {
+      return (-1);
+    }
+
+  } else if (x2 == x1) {
+
+    if (y2 == y1 + 1) {
+      door1 = S;
+      door2 = N;
+    } else if (y2 == y1 - 1) {
+      door1 = N;
+      door2 = S;
+    } else {
+      return (-1);
+    }
+
+  } else {
+    return (-1);
+  }
+
+  cell1 |= 1 << door1;
+  cell2 |= 1 << door2;
+  cell1 |= 1 << STATE;
+  cell2 |= 1 << STATE;
+  return (0);
+}
+
+/*
+ * Generate a maze
+ * Param: the maze to generate
+*/
 void        generate_maze(maze_t *maze)
 {
   list_t    *histo;
@@ -182,13 +238,16 @@ void        generate_maze(maze_t *maze)
   cur_cell = histo->root;
   while (cur_cell != histo->root && rand_next_cell(histo->root->cell, maze)) {
 
-    if (!(next_cell = rand_next_cell(cur_cell->cell, maze))) {
+    if (!(next_cell = add_child(cur_cell, rand_next_cell(cur_cell->cell, maze)))) {
       if (cur_cell != histo->root)
         cur_cell = cur_cell->prev;
     }
 
     while (next_cell) {
-      cur_cell->cell |= 1 << STATE;
+      open_door(cur_cell->cell, next_cell->cell, maze);
+      add_child(cur_cell, next_cell->)
+      cur_cell = next_cell;
+
     }
 
   }
