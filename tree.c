@@ -1,8 +1,12 @@
+#include "stdtool.h"
 #include "maze.h"
 
 node_t			*add_child(node_t *node, char *cell)
 {
 	node_t		*new_node;
+
+	if (!cell)
+		return (NULL);
 
 	new_node = malloc(sizeof(node_t));
 	new_node->cell = cell;

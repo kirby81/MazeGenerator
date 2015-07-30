@@ -143,7 +143,7 @@ char        *rand_cell(maze_t *maze)
   int       size;
 
   size = maze->m * maze->n;
-  return (maze->array[get_nbrand(size)]);
+  return (&maze->array[get_nbrand(size)]);
 }
 
 /*
@@ -218,10 +218,10 @@ int         open_door(char *cell1, char *cell2, maze_t *maze)
     return (-1);
   }
 
-  cell1 |= 1 << door1;
-  cell2 |= 1 << door2;
-  cell1 |= 1 << STATE;
-  cell2 |= 1 << STATE;
+  *cell1 |= 1 << door1;
+  *cell2 |= 1 << door2;
+  *cell1 |= 1 << STATE;
+  *cell2 |= 1 << STATE;
   return (0);
 }
 
@@ -236,20 +236,22 @@ void        generate_maze(maze_t *maze)
 
   histo = new_list(rand_cell(maze));
   cur_cell = histo->root;
-  while (cur_cell != histo->root && rand_next_cell(histo->root->cell, maze)) {
+  
+  while (cur_cell != histo->root || rand_next_cell(histo->root->cell, maze)) {
 
     if (!(next_cell = add_child(cur_cell, rand_next_cell(cur_cell->cell, maze)))) {
-      if (cur_cell != histo->root)
+      if (cur_cell != histo->root) {
         cur_cell = cur_cell->prev;
+      }
     }
-
     while (next_cell) {
       open_door(cur_cell->cell, next_cell->cell, maze);
-      add_child(cur_cell, next_cell->)
+      add_child(cur_cell, next_cell->cell);
       cur_cell = next_cell;
-
+      next_cell = add_child(cur_cell, rand_next_cell(cur_cell->cell, maze));
     }
-
   }
+  
+  destroy_list(histo);
 
 }

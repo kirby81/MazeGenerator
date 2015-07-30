@@ -40,12 +40,12 @@ typedef struct {
 } maze_t;
 
 /* Define node structure */
-typedef struct node_t{
+typedef struct 			node_t{
 	/* A maze cell */
-	char 		*cell;
+	char 				*cell;
 
-	node_t		*next;
-	node_t		*prev;
+	struct node_t		*next;
+	struct node_t		*prev;
 	
 } node_t;
 
@@ -74,6 +74,8 @@ char		*cell_at_dir(int dir, char *cell, maze_t *maze);
 char        *rand_border_cell(maze_t *maze);
 // Get a random cell next to the current one
 char        *rand_next_cell(char *cell, maze_t *maze);
+// Get a random cell from the maze
+char        *rand_cell(maze_t *maze);
 
 /* Prototypes tree.c*/
 node_t		*add_child(node_t *node, char *cell);
