@@ -12,6 +12,7 @@ node_t			*add_child(node_t *node, char *cell)
 	new_node->cell = cell;
 	new_node->prev = node;
 	new_node->next = node->next;
+	node->next = new_node;
 
 	return (new_node);
 }
@@ -37,9 +38,9 @@ void			destroy_list(list_t *list)
 {
 	node_t		*garbage;
 
-	while (list->root) {
+	while (list->root != NULL) {
 		garbage = list->root;
-		list->root = list->root->next;
+		list->root = (list->root)->next;
 		free(garbage);
 	}
 

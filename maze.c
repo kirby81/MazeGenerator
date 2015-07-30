@@ -246,12 +246,10 @@ void        generate_maze(maze_t *maze)
     }
     while (next_cell) {
       open_door(cur_cell->cell, next_cell->cell, maze);
-      add_child(cur_cell, next_cell->cell);
+      //add_child(cur_cell, next_cell->cell);
       cur_cell = next_cell;
       next_cell = add_child(cur_cell, rand_next_cell(cur_cell->cell, maze));
     }
   }
-  
   destroy_list(histo);
-
 }
