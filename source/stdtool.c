@@ -97,6 +97,10 @@ void				printBit(unsigned char var)
  	}
  }
 
+ /*
+ * Put doors on a SDLCell
+ * Param: the ref cell and the SDLCell
+ */
 void SDLFillCell(char cell, SDL_Surface *rect) {
 	SDL_Surface *door;
 	SDL_Rect pos;
@@ -180,12 +184,13 @@ int printSDLCharArrayMaze(char *array, int m, int n) {
 	SDL_Surface *window;
 
 	if (SDL_Init(SDL_INIT_VIDEO) == -1) {
-		fprintf(stderr, "Erreur d'initialisation de la sdl\n");
+		fprintf(stderr, "Error SDL initialization: %s\n", SDL_GetError());
 		return (-1);
 	}
 
 	SDLMaze = SDLMazeGenerator(array, m , n);
 	window = SDL_SetVideoMode(SDLMaze->w, SDLMaze->h, 32, SDL_HWSURFACE);
+	SDL_WM_SetCaption("MazeGenerator", NULL);
 
 	for (size_t i = 0; i < SDLMaze->size; i++) {
 		SDL_BlitSurface(SDLMaze->cells[i], NULL, window, &SDLMaze->positions[i]);
