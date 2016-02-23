@@ -1,4 +1,4 @@
-# MazeGenerator
+# MazeGenerator &nbsp; [![GitHub license](https://img.shields.io/github/license/mashape/apistatus.svg)]()
 
 A simple maze generator in C
 
@@ -18,7 +18,3 @@ A simple maze generator in C
 # Install
 
 Use make to compile the project
-
-# License
-
-[![GitHub license](https://img.shields.io/github/license/mashape/apistatus.svg)]()
