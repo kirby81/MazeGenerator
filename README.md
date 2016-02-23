@@ -7,6 +7,7 @@ A simple maze generator in C
     <a href="./ressource/MazeGenerator.png" style=>
        <img src="./ressource/MazeGenerator.png" alt="./MazeGenerator 20 20">
     </a>
+    <br/>
   </center
 <figcaption>
   <center>
