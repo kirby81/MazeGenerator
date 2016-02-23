@@ -237,6 +237,7 @@ void        generate_maze(maze_t *maze)
   histo = new_list(rand_cell(maze));
   cur_cell = histo->root;
 
+	srand(time(NULL));
   while (cur_cell != histo->root || rand_next_cell(histo->root->cell, maze)) {
 
     if (!(next_cell = add_child(cur_cell, rand_next_cell(cur_cell->cell, maze)))) {
