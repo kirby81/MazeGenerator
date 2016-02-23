@@ -1,5 +1,5 @@
-#include "stdtool.h"
-#include "maze.h"
+#include "../include/stdtool.h"
+#include "../include/maze.h"
 
 node_t			*add_child(node_t *node, char *cell)
 {

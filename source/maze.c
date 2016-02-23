@@ -1,5 +1,5 @@
-#include "stdtool.h"
-#include "maze.h"
+#include "../include/stdtool.h"
+#include "../include/maze.h"
 
 /*
  * Create a new maze with m lines ans n columns
@@ -70,7 +70,7 @@ char		*get_cellxy(int x, int y, maze_t *maze)
  }
 
  /*
-  * Check if a cell exist 
+  * Check if a cell exist
   * Param: dir to look from the given cell
   * Return: the cell if exists or NULL
  */
@@ -154,14 +154,14 @@ char        *rand_cell(maze_t *maze)
 char        *rand_next_cell(char *cell, maze_t *maze)
 {
   char      *cellArray[4];
-  const int dir[4] = {N, W, S, E};
+  //const int dir[4] = {N, W, S, E};
   int       size;
   int       i;
 
   size = 0;
   i = 0;
   while (i < 4) {
-    if (cellArray[size] = cell_at_dir(i, cell, maze)) {
+    if ((cellArray[size] = cell_at_dir(i, cell, maze))) {
       if ((*cellArray[size] & CSTATE) == 0)
         size++;
     }
@@ -236,7 +236,7 @@ void        generate_maze(maze_t *maze)
 
   histo = new_list(rand_cell(maze));
   cur_cell = histo->root;
-  
+
   while (cur_cell != histo->root || rand_next_cell(histo->root->cell, maze)) {
 
     if (!(next_cell = add_child(cur_cell, rand_next_cell(cur_cell->cell, maze)))) {

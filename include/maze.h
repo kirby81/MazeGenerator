@@ -46,7 +46,7 @@ typedef struct 			node_t{
 
 	struct node_t		*next;
 	struct node_t		*prev;
-	
+
 } node_t;
 
 /* Define tree structure */
@@ -76,6 +76,8 @@ char        *rand_border_cell(maze_t *maze);
 char        *rand_next_cell(char *cell, maze_t *maze);
 // Get a random cell from the maze
 char        *rand_cell(maze_t *maze);
+// Generate a maze
+void        generate_maze(maze_t *maze);
 
 /* Prototypes tree.c*/
 node_t		*add_child(node_t *node, char *cell);
